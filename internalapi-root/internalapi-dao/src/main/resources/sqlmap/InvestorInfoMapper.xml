@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hexun.yewu.jsapi.mapper.rc.InvestorInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hexun.yewu.jsapi.entity.rc.InvestorInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="profession" property="profession" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="educational_level" property="educationalLevel" jdbcType="VARCHAR" />
+    <result column="bad_record" property="badRecord" jdbcType="VARCHAR" />
+    <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
+    <result column="identity_valid_begin" property="identityValidBegin" jdbcType="VARCHAR" />
+    <result column="identity_valid_end" property="identityValidEnd" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="postal_code" property="postalCode" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="mark" property="mark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, user_name, sex,birthday,nationality,profession,company,position,educational_level,bad_record,identity_card,identity_valid_begin,identity_valid_end,address,postal_code,email,telephone,mark,create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RC_InvestorInfo
+    where id = #{id}
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.hexun.yewu.jsapi.entity.rc.InvestorInfo" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from RC_InvestorInfo
+	    where 1=1
+    		<if test="id != null"> and id=#{id} </if>
+	        <if test="userid != null"> and userid=#{userid} </if>
+  </select>
+  
+  <insert id="insert" parameterType="com.hexun.yewu.jsapi.entity.rc.InvestorInfo" >
+    insert into RC_InvestorInfo 
+   		 (userid, user_name, sex,birthday,profession,company,position,educational_level,bad_record,identity_card,identity_valid_begin,identity_valid_end,address,postal_code,email,telephone,mark,nationality)
+    values 
+   		 (#{userid},#{userName}, #{sex},#{birthday},#{profession},#{company},#{position},#{educationalLevel},#{badRecord},#{identityCard},#{identityValidBegin},#{identityValidEnd},#{address},#{postalCode},#{email},#{telephone},#{mark},#{nationality})
+  </insert>
+  
+  
+</mapper>

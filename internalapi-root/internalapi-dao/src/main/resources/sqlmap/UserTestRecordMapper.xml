@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hexun.yewu.jsapi.mapper.rc.UserTestRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.hexun.yewu.jsapi.entity.rc.UserTestRecord" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="answers" property="answers" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid,answers,score,flag,version,create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RC_UserTestRecord
+    where id = #{id}
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.hexun.yewu.jsapi.entity.rc.UserTestRecord" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from RC_UserTestRecord
+	    where flag=1
+    		<if test="id != null"> and id=#{id} </if>
+	        <if test="userid != null and userid !=''"> and userid=#{userid} </if>
+	        <if test="version !=null and version !=''"> and version=#{version}</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.hexun.yewu.jsapi.entity.rc.UserTestRecord" >
+    insert into RC_UserTestRecord 
+   		 (userid,answers,score,flag,version,create_time)
+    values 
+   		 (#{userid},#{answers}, #{score},#{flag},#{version},SYSDATE())
+  </insert>
+  <update id="updateLastTestInvalidate" parameterType="com.hexun.yewu.jsapi.entity.rc.UserTestRecord">
+  	 update RC_UserTestRecord set flag='0' where userid=#{userid}
+  </update>
+  
+  <select id="loadRankScore" parameterType="java.lang.Integer"  resultType="java.util.HashMap">
+  	  select id,risk_rank,risk_rank_value,low,high from RC_RankScore
+  	  where   ${value}>=low and high>=${value}
+  </select>
+  
+  <select id="loadTopicAnswers" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select id,topic_id,`option`,version from RC_TopicAnswer
+			where version=#{version}
+  </select>
+  <select id="getProdcutTypeRiskRankByCondtion" parameterType="com.hexun.yewu.jsapi.entity.rc.ProductTypeRiskRank" resultType="java.util.HashMap">
+  		select id,product_type,risk_rank,risk_rank_value,switch_flag from RC_ProductTypeRiskRank
+  		where switch_flag=1
+  		<if test="productType!=null and productType!=''"> and product_type =#{productType}</if>
+  		<if test="riskRank!=null and riskRank!=''">and risk_rank =#{riskRank}</if>
+  		
+  </select>
+</mapper>
