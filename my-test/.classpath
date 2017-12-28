@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/JohnD/.m2/repository/org/mockito/mockito-all/1.8.5/mockito-all-1.8.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/JohnD/.m2/repository/org/mockito/mockito-all/1.8.5/mockito-all-1.8.5-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/JohnD/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/JohnD/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/JohnD/.m2/repository/redis/clients/jedis/2.8.0/jedis-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/JohnD/.m2/repository/redis/clients/jedis/2.8.0/jedis-2.8.0-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/core"/>
+	<classpathentry kind="lib" path="C:/Users/JohnD/.m2/repository/com/hexun/yewu/core/0.1.0-SNAPSHOT/core-0.1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
